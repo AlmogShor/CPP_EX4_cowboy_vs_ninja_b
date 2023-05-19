@@ -9,7 +9,13 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include "Character.hpp"
+#include "Point.hpp"
+#include "Cowboy.hpp"
+#include "Ninja.hpp"
 
+
+#define MAX_TEAM 10
 namespace ariel {
 //    class Point {
 //    public:
@@ -160,4 +166,4 @@ namespace ariel {
 //
 //        void print();
 //    };
-//}
+}

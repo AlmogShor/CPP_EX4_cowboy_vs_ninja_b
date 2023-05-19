@@ -4,7 +4,10 @@
 
 #pragma once
 
-namespace ariel{
+#include <vector>
+#include "Team.hpp"
+
+namespace ariel {
     class Team2 {
     private:
         std::vector<Character *> fighters;
@@ -43,4 +46,4 @@ namespace ariel{
         void print();
     };
 }
-}
+
