@@ -91,7 +91,7 @@ TEST_SUITE("Point class tests") {
         Point p3{Point::moveTowards(p1, p2, half_p)};
         CHECK_EQ(p3.distance(p2), doctest::Approx(half_p).epsilon(0.001));
 
-        Point p4{Point::moveTowards(p1, p2, third_p)};
+        Point p4{Point::moveTowards(p1, p2, third_p)}; //
         CHECK_EQ(p4.distance(p2), doctest::Approx(third_p * 2).epsilon(0.001));
 
         // There is no such a thing as negative distance

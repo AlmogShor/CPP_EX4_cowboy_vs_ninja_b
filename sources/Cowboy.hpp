@@ -15,6 +15,8 @@ namespace ariel {
 
         bool hasBullets() const;
 
+        bool hasboolets() const;    // Typo on purpose in the test file
+
         void reload();
 
         int getAmmo() const {

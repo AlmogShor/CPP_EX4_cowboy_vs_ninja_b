@@ -13,9 +13,13 @@
 #include "Point.hpp"
 #include "Cowboy.hpp"
 #include "Ninja.hpp"
+#include "YoungNinja.hpp"
+#include "TrainedNinja.hpp"
+#include "OldNinja.hpp"
+#include "Team2.hpp"
 
 
-#define MAX_TEAM 10
+#define MAX_TEAM_SIZE 10
 namespace ariel {
 //    class Point {
 //    public:

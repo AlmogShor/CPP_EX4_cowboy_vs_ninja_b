@@ -20,7 +20,7 @@ namespace ariel {
 
         void print() const;
 
-        Point moveTowards(const Point &source, const Point &target, double distance) const;
+        static Point moveTowards(const Point &source, const Point &target, double distance);
 
         //getters
         double getX() const {
