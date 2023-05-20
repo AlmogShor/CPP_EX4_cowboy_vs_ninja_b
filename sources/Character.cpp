@@ -4,6 +4,7 @@
 
 #include "Character.hpp"
 #include <stdexcept>
+#include <sstream>
 
 namespace ariel {
     Character::Character(const std::string &name, const Point &location, int hit_points)
@@ -30,9 +31,10 @@ namespace ariel {
         return location;
     }
 
-    void Character::print() const {
-        std::cout << "Character(" << name << ", " << "HP: " << hit_points << ", " << "Location: ";
-        location.print();
-        std::cout << ")\n";
+    std::string Character::print() const {
+        std::stringstream ss;
+        ss << "Character(" << name << ", " << "HP: " << hit_points << ", " << "Location: ";
+        ss << location.getX() << ", " << location.getY() << ")\n";
+        return ss.str();
     }
 }

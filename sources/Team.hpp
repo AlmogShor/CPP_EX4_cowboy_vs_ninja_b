@@ -128,7 +128,7 @@ namespace ariel {
 
         void attack(Team *enemy);
 
-        bool stillAlive();
+        int stillAlive();
 
         void print();
     };

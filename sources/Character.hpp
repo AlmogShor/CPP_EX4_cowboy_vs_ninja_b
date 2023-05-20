@@ -23,7 +23,7 @@ namespace ariel {
 
         Point getLocation() const;
 
-        void print() const;
+        std::string print() const;
 
     protected:
         std::string name;
