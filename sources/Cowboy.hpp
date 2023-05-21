@@ -23,6 +23,10 @@ namespace ariel {
             return bullets;
         }
 
+        std::string getType() const override {
+            return "Cowboy";
+        }
+
     private:
         int bullets;
     };

@@ -15,6 +15,10 @@ namespace ariel {
 
         void slash(Character *enemy) const;
 
+        std::string getType() const override  {
+            return "Ninja";
+        }
+
     protected:
         int speed;
     };

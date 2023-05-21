@@ -118,6 +118,8 @@ namespace ariel {
     private:
         std::vector<Character *> fighters;
         Character *leader;
+        int highest_cowboy_position;
+        int lowest_ninja_position;
 
     public:
         Team(Character *leader);

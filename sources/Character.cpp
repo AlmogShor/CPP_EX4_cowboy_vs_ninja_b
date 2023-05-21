@@ -17,6 +17,13 @@ namespace ariel {
     double Character::distance(const Character &other) const {
         return location.distance(other.location);
     }
+    // New distance implementation that takes a pointer like the test file requires
+    double Character::distance(const Character *other) const {
+        if (other == nullptr) {
+            throw std::invalid_argument("Argument to distance cannot be null");
+        }
+        return distance(*other);
+    }
 
     void Character::hit(int damage) {
         hit_points -= damage;

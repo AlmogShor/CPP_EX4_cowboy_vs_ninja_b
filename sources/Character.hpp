@@ -13,9 +13,17 @@ namespace ariel {
     public:
         Character(const std::string &name, const Point &location, int hit_points);
 
+        //Virtual destructor
+        virtual ~Character() = default;
+
+
         bool isAlive() const;
 
+
         double distance(const Character &other) const;
+
+        // New distance method that takes a pointer like the test file requires
+        double distance(const Character *other) const;
 
         void hit(int damage);
 
@@ -24,6 +32,8 @@ namespace ariel {
         Point getLocation() const;
 
         std::string print() const;
+
+        virtual std::string getType() const = 0;
 
     protected:
         std::string name;

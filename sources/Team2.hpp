@@ -13,6 +13,7 @@ namespace ariel {
         std::vector<Character *> fighters;
         Character *leader;
 
+
     public:
         Team2(Character *leader);
 
@@ -25,6 +26,8 @@ namespace ariel {
         bool stillAlive();
 
         void print();
+
+
     };
 
     class SmartTeam {
