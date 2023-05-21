@@ -31,6 +31,8 @@ namespace ariel {
 
         Point getLocation() const;
 
+        bool setLocation(const Point &location);
+
         std::string print() const;
 
         virtual std::string getType() const = 0;
