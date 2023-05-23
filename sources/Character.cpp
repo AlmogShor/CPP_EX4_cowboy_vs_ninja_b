@@ -45,9 +45,7 @@ namespace ariel {
         this->location = new_location;
     }
 
-    bool Character::getInTeam(){
-        return this->hasTeam;
-    }
+
     void Character::setInTeam(bool in_team){
         this->hasTeam = in_team;
     }

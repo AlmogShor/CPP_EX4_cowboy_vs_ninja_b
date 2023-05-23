@@ -69,7 +69,7 @@ namespace ariel {
     int Team::stillAlive() {
         int alive_count = 0;
         for (Character *fighter : fighters) {
-            if (fighter->isAlive()) {
+            if (fighter != nullptr && fighter->isAlive()) {
                 alive_count++;
             }
         }

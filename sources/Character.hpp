@@ -35,7 +35,9 @@ namespace ariel {
 
         //helpers
         void setLocation(Point new_location);
-        bool getInTeam() const;
+        bool getInTeam() const{
+            return hasTeam;
+        }
         void setInTeam(bool in_team);
 
         virtual std::string print() = 0;

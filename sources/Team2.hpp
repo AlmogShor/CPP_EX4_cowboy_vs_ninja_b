@@ -8,7 +8,7 @@
 #include "Team.hpp"
 
 namespace ariel {
-    class Team2 {
+    class Team2 : public Team {
     private:
         std::vector<Character *> fighters;
         Character *leader;
@@ -19,18 +19,17 @@ namespace ariel {
 
         ~Team2();
 
-        void add(Character *fighter);
+        void add(Character *fighter) override;
 
-        void attack(Team2 *enemy);
+        void attack(Team *enemy) override;
 
-        bool stillAlive();
 
-        void print();
+        void print() override;
 
 
     };
 
-    class SmartTeam {
+    class SmartTeam : public Team2 {
     private:
         std::vector<Character *> fighters;
         Character *leader;
@@ -38,15 +37,10 @@ namespace ariel {
     public:
         SmartTeam(Character *leader);
 
-        ~SmartTeam();
 
-        void add(Character *fighter);
+        void attack(Team *enemy) override;
 
-        void attack(SmartTeam *enemy);
 
-        bool stillAlive();
-
-        void print();
     };
 }
 
