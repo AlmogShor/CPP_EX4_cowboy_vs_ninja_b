@@ -133,6 +133,9 @@ namespace ariel {
         int stillAlive();
 
         void print();
+
+        Character *getLeader() const{
+            return leader;}
     };
 
 //    class Team2 {

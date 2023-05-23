@@ -4,6 +4,45 @@
 
 #include "Team2.hpp"
 
+
+namespace ariel {
+    Team2::Team2(Character *leader) : Team(leader) {}
+
+    Team2::~Team2() {}
+
+    void Team2::attack(Team2 *enemy) {
+        // Implement attack logic specific to Team2
+        // Here, for example, the leader attacks first followed by each fighter
+        getLeader()->attack(enemy);
+        for (auto fighter: fighters) {
+            if (fighter->isAlive()) {
+                fighter->attack(enemy);
+            }
+        }
+    }
+}
+
+// SmartTeam.cpp
+
+namespace ariel {
+    SmartTeam::SmartTeam(Character *leader) : Team(leader) {}
+
+    SmartTeam::~SmartTeam() {}
+
+    void SmartTeam::attack(SmartTeam *enemy) {
+        // Implement attack logic specific to SmartTeam
+        // Here, for example, the leader chooses the best fighter to attack
+        Character *bestFighter = fighters[0]; // Assuming fighters[0] is the best initially
+        for (auto fighter: fighters) {
+            if (fighter->isAlive() && fighter->getSkillLevel() > bestFighter->getSkillLevel()) {
+                bestFighter = fighter;
+            }
+        }
+        bestFighter->attack(enemy);
+    }
+}
+
+
 namespace ariel {
     Team2::Team2(Character *leader) : leader(leader) {
         fighters.push_back(leader);

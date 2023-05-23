@@ -11,7 +11,7 @@ namespace ariel {
             : name(name), location(location), hit_points(hit_points) {}
 
     bool Character::isAlive() const {
-        return hit_points > 0;
+        return this->hit_points > 0;
     }
 
     double Character::distance(const Character &other) const {
@@ -26,7 +26,10 @@ namespace ariel {
     }
 
     void Character::hit(int damage) {
-        hit_points -= damage;
+        if (damage < 0) {
+            throw std::invalid_argument("damage cannot be negative");
+        }
+        this->hit_points -= damage;
         if (hit_points < 0) hit_points = 0;
     }
 
@@ -38,10 +41,23 @@ namespace ariel {
         return location;
     }
 
-    std::string Character::print() const {
-        std::stringstream ss;
-        ss << "Character(" << name << ", " << "HP: " << hit_points << ", " << "Location: ";
-        ss << location.getX() << ", " << location.getY() << ")\n";
-        return ss.str();
+    void Character::setLocation(Point new_location) {
+        this->location = new_location;
     }
+
+    bool Character::getInTeam(){
+        return this->hasTeam;
+    }
+    void Character::setInTeam(bool in_team){
+        this->hasTeam = in_team;
+    }
+
+
+    // old print method - not needed anymore since we have a virtual print method
+//    std::string Character::print() const {
+//        std::stringstream ss;
+//        ss << "Character(" << name << ", " << "HP: " << hit_points << ", " << "Location: ";
+//        ss << location.getX() << ", " << location.getY() << ")\n";
+//        return ss.str();
+//    }
 }

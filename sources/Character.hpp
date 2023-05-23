@@ -33,13 +33,18 @@ namespace ariel {
 
         bool setLocation(const Point &location);
 
-        std::string print() const;
+        //helpers
+        void setLocation(Point new_location);
+        bool getInTeam() const;
+        void setInTeam(bool in_team);
 
+        virtual std::string print() = 0;
         virtual std::string getType() const = 0;
 
     protected:
         std::string name;
         Point location;
         int hit_points;
+        bool hasTeam;
     };
 }
