@@ -31,7 +31,11 @@ namespace ariel {
         }
 
         // Perform damage calculation and attack the enemy.
-        int damage = 10; // Arbitrary value, replace with actual damage calculation.
+        int damage = 40; // Assuming damage is 40 constant
         enemy->hit(damage);
+    }
+
+    std::string Ninja::print() {
+        return "Ninja";
     }
 }
