@@ -18,7 +18,6 @@
 #include "OldNinja.hpp"
 
 
-
 #define MAX_TEAM_SIZE 10
 namespace ariel {
     class Team {
@@ -44,6 +43,8 @@ namespace ariel {
 
         virtual void attack(Team *enemy);
 
+        void orderFighters(Character *newFighter);
+
         virtual int stillAlive();
 
         virtual void print();
@@ -51,6 +52,7 @@ namespace ariel {
         Character *getLeader() const {
             return leader;
         }
+
         std::vector<Character *> getFighters() const {
             return fighters;
         }

@@ -18,6 +18,16 @@ namespace ariel {
 
     }
 
+    /**
+      * Add a fighter to the team.
+      * This function adds the fighter at the right position in the fighters vector,
+      * following the rule: "Cowboys" first, then "Ninjas".
+      * Within each group, the fighters are sorted by their order of addition.
+      *
+      * @param fighter: The fighter to add to the team.
+      * @throws std::runtime_error: If the team is full, the fighter is already in a team,
+      *                             or the fighter is already in a different team.
+      */
     void Team::add(Character *fighter) {
         if (fighters.size() >= MAX_TEAM_SIZE) {
             throw std::runtime_error("Team is full");
@@ -30,13 +40,37 @@ namespace ariel {
         if (fighter->getHasTeam()) {
             throw std::runtime_error("Character already in a different team");
         }
-        fighters.push_back(fighter);
         fighter->setInTeam(true);
 
         if (fighter->getType() == "Cowboy") {
             highest_cowboy_position++;
         } else {
             lowest_ninja_position--;
+        }
+
+        orderFighters(fighter);
+    }
+
+    /**
+     * Helper function to maintain the order of fighters in the team.
+     * "Cowboys" are always at the beginning of the vector, followed by "Ninjas".
+     * Within each group, the fighters are sorted by their order of addition.
+     *
+     * @param newFighter: The new fighter to add to the vector.
+     */
+    void Team::orderFighters(Character* newFighter) {
+        if (newFighter->getType() == "Cowboy") {
+            if (highest_cowboy_position <= fighters.size()) {
+                fighters.insert(fighters.begin() + highest_cowboy_position - 1, newFighter);
+            } else {
+                fighters.push_back(newFighter);
+            }
+        } else {
+            if (highest_cowboy_position + lowest_ninja_position <= fighters.size()) {
+                fighters.insert(fighters.begin() + highest_cowboy_position + lowest_ninja_position, newFighter);
+            } else {
+                fighters.push_back(newFighter);
+            }
         }
     }
 
