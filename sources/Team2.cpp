@@ -5,23 +5,19 @@
 #include "Team2.hpp"
 
 namespace ariel {
-    Team2::Team2(Character *leader) : leader(leader), Team(leader) {
-        fighters.push_back(leader);
+    Team2::Team2(Character *leader) : Team(leader) {
     }
 
     Team2::~Team2() {
-        for (Character *fighter: fighters) {
-            delete fighter;
-        }
+
     }
 
     void Team2::add(Character *fighter) {
-        for (Character *member: fighters) {
-            if (member == fighter) {
-                throw std::runtime_error("Character already in a team");
-            }
+        if (fighter->getHasTeam()) {
+            throw std::runtime_error("Character already in a team");
         }
-        fighters.push_back(fighter);
+        Team::add(fighter); // Use the base class method
+        fighter->setInTeam(true);
     }
 
     void Team2::attack(Team *enemy) {

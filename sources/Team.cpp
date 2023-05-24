@@ -11,9 +11,7 @@ namespace ariel {
     }
 
     Team::~Team() {
-        for (Character *fighter: fighters) {
-            delete fighter;
-        }
+
     }
 
     void Team::add(Character *fighter) {
