@@ -48,7 +48,6 @@ namespace ariel {
             throw std::runtime_error("Cannot attack a dead team");
         }
         if (this->stillAlive() == 0) {
-            return;
             throw std::runtime_error("A dead team can't attack");
         }
         if (this == enemy) {
@@ -84,15 +83,14 @@ namespace ariel {
                 }
             }
             if (fighter->getType() == "Cowboy") {
-                printf("Cowboy shot");
                 dynamic_cast<Cowboy *>(fighter)->shoot(victim);
             } else if (fighter->getType() == "Ninja") {
                 if (fighter->distance(*victim) <= 1) {
                     dynamic_cast<Ninja *>(fighter)->slash(victim);
-                    printf("Ninja slashed");
+
                 } else {
                     dynamic_cast<Ninja *>(fighter)->move(victim);
-                    printf("Ninja moved");
+
                 }
             }
         }
