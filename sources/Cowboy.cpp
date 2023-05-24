@@ -10,8 +10,11 @@ namespace ariel {
 
     void Cowboy::shoot(Character *enemy) {
         if (bullets > 0) {
-            enemy->hit(20); // Assuming each bullet causes 20 damage
+            enemy->hit(10); // Assuming each bullet causes 20 damage
             bullets--;
+        }
+        if (!hasBullets()){
+            this->reload();
         }
     }
     bool Cowboy::hasBullets() const {
@@ -26,7 +29,7 @@ namespace ariel {
         bullets = 6; // Assuming full ammo is 6 bullets
     }
     std::string Cowboy::print() {
-        return "";
+        return "Cowboy";
     }
 
 }
