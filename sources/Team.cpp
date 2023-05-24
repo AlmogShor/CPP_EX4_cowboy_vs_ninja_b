@@ -41,6 +41,7 @@ namespace ariel {
             throw std::runtime_error("Cannot attack a dead team");
         }
         if (this->stillAlive() == 0) {
+            return;
             throw std::runtime_error("A dead team can't attack");
         }
         if (this == enemy) {

@@ -39,9 +39,9 @@ int main() {
 
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
         team_A.attack(&team_B);
-        printf("Team A attacked\n");
+
         team_B.attack(&team_A);
-        printf("Team B attacked\n");
+
         team_A.print();
         team_B.print();
 
