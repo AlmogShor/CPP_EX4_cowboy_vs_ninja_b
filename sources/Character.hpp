@@ -14,7 +14,7 @@ namespace ariel {
         Character(const std::string &name, const Point &location, int hit_points);
 
         //Virtual destructor
-        virtual ~Character() = default;
+             virtual ~Character();
 
 
         bool isAlive() const;
@@ -39,6 +39,7 @@ namespace ariel {
             return hasTeam;
         }
         void setInTeam(bool in_team);
+        bool getHasTeam();
 
         virtual std::string print() = 0;
         virtual std::string getType() const = 0;
@@ -47,6 +48,6 @@ namespace ariel {
         std::string name;
         Point location;
         int hit_points;
-        bool hasTeam;
+        bool hasTeam= false;
     };
 }

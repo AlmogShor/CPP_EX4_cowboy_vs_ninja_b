@@ -25,8 +25,13 @@ namespace ariel {
                 throw std::runtime_error("Character already in a team");
             }
         }
+        if (fighter->getHasTeam()) {
+            throw std::runtime_error("Character already in a different team");
+        }
         fighters.push_back(fighter);
-        if (fighter->getType() == "C") {
+        fighter->setInTeam(true);
+
+        if (fighter->getType() == "Cowboy") {
             highest_cowboy_position++;
         } else {
             lowest_ninja_position--;

@@ -10,6 +10,11 @@ namespace ariel {
     Character::Character(const std::string &name, const Point &location, int hit_points)
             : name(name), location(location), hit_points(hit_points) {}
 
+    Character::~Character() {
+
+    }
+
+
     bool Character::isAlive() const {
         return this->hit_points > 0;
     }
@@ -17,6 +22,7 @@ namespace ariel {
     double Character::distance(const Character &other) const {
         return location.distance(other.location);
     }
+
     // New distance implementation that takes a pointer like the test file requires
     double Character::distance(const Character *other) const {
         if (other == nullptr) {
@@ -47,8 +53,12 @@ namespace ariel {
     }
 
 
-    void Character::setInTeam(bool in_team){
+    void Character::setInTeam(bool in_team) {
         this->hasTeam = in_team;
+    }
+
+    bool Character::getHasTeam() {
+        return this->hasTeam;
     }
 
 
