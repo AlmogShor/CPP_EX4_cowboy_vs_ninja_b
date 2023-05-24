@@ -31,6 +31,7 @@ namespace ariel {
         }
         this->hit_points -= damage;
         if (hit_points < 0) hit_points = 0;
+
     }
 
     std::string Character::getName() const {

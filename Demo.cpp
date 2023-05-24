@@ -39,9 +39,13 @@ int main() {
 
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
         team_A.attack(&team_B);
+        printf("Team A attacked\n");
         team_B.attack(&team_A);
+        printf("Team B attacked\n");
         team_A.print();
         team_B.print();
+
+        printf("Team A living: %d\nTeam B living: %d", team_A.stillAlive(),team_B.stillAlive());
      }
 
      if (team_A.stillAlive() > 0) cout << "winner is team_A" << endl;
