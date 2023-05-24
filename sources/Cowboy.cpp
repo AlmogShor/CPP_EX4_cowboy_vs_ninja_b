@@ -25,5 +25,8 @@ namespace ariel {
     void Cowboy::reload() {
         bullets = 6; // Assuming full ammo is 6 bullets
     }
+    std::string Cowboy::print() {
+        return "";
+    }
 
 }
