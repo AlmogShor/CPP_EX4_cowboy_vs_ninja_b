@@ -51,6 +51,9 @@ namespace ariel {
         Character *getLeader() const {
             return leader;
         }
+        std::vector<Character *> getFighters() const {
+            return fighters;
+        }
 
         // need to think about the following helper funcs
         /*

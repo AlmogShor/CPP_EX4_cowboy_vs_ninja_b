@@ -37,13 +37,13 @@ namespace ariel {
         if (this == enemy) {
             throw std::runtime_error("A team cannot attack itself");
         }
-        Character *victim = enemy->fighters[0]; // Again, you might need to find the closest fighter
+        Character *victim = enemy->getFighters()[0]; // Again, you might need to find the closest fighter
         for (Character *fighter: fighters) {
             if (!fighter->isAlive() || enemy->stillAlive() <= 0) {
                 break;
             }
             if (!victim->isAlive()) {
-                victim = enemy->fighters[0]; // Again, you might need to find the next alive fighter
+                victim = enemy->getFighters()[0]; // Again, you might need to find the next alive fighter
             }
             if (fighter->getType() == "Cowboy") {
                 dynamic_cast<Cowboy *>(fighter)->shoot(victim);
@@ -83,14 +83,14 @@ namespace ariel {
 //        }
 //    }
 
-    void SmartTeam::add(Character *fighter) {
-        for (Character *member: fighters) {
-            if (member == fighter) {
-                throw std::runtime_error("Character already in a team");
-            }
-        }
-        fighters.push_back(fighter);
-    }
+//    void SmartTeam::add(Character *fighter) {
+//        for (Character *member: fighters) {
+//            if (member == fighter) {
+//                throw std::runtime_error("Character already in a team");
+//            }
+//        }
+//        fighters.push_back(fighter);
+//    }
 
     void SmartTeam::attack(Team *enemy) {
         if (!enemy) {
@@ -105,13 +105,13 @@ namespace ariel {
         if (this == enemy) {
             throw std::runtime_error("A team cannot attack itself");
         }
-        Character *victim = enemy->fighters[0]; // Again, you might need to find the closest fighter
+        Character *victim = enemy->getFighters()[0]; // Again, you might need to find the closest fighter
         for (Character *fighter: fighters) {
             if (!fighter->isAlive() || enemy->stillAlive() <= 0) {
                 break;
             }
             if (!victim->isAlive()) {
-                victim = enemy->fighters[0]; // Again, you might need to find the next alive fighter
+                victim = enemy->getFighters()[0]; // Again, you might need to find the next alive fighter
             }
             if (fighter->getType() == "Cowboy") {
                 dynamic_cast<Cowboy *>(fighter)->shoot(victim);
