@@ -2,7 +2,7 @@
 
 namespace ariel {
     Team::Team(Character *leader) : leader(leader), highest_cowboy_position(0), lowest_ninja_position(10) {
-        if(leader->getHasTeam()){
+        if (leader->getHasTeam()) {
             throw std::runtime_error("Leader already in other team");
         }
         fighters.push_back(leader);
@@ -47,7 +47,16 @@ namespace ariel {
         } else {
             lowest_ninja_position--;
         }
-
+// Check if the leader is alive. If not, appoint the closest teammate to the deceased leader as the new leader.
+        if (!leader->isAlive()) {
+            double closest_distance = std::numeric_limits<double>::max();
+            for (Character *potential_leader: fighters) {
+                if (potential_leader->isAlive() && leader->distance(*potential_leader) < closest_distance) {
+                    closest_distance = leader->distance(*potential_leader);
+                    leader = potential_leader;
+                }
+            }
+        }
         orderFighters(fighter);
     }
 
@@ -58,7 +67,7 @@ namespace ariel {
      *
      * @param newFighter: The new fighter to add to the vector.
      */
-    void Team::orderFighters(Character* newFighter) {
+    void Team::orderFighters(Character *newFighter) {
         if (newFighter->getType() == "Cowboy") {
             if (highest_cowboy_position <= fighters.size()) {
                 fighters.insert(fighters.begin() + highest_cowboy_position - 1, newFighter);
@@ -88,10 +97,25 @@ namespace ariel {
             throw std::runtime_error("A team cannot attack itself");
         }
         Character *victim = nullptr;
+        Character *closest_victim = nullptr;
+        double closest_distance = std::numeric_limits<double>::max();
+
+// Check if the leader is alive. If not, appoint the closest teammate to the deceased leader as the new leader.
+        if (!leader->isAlive()) {
+            for (Character *potential_leader: fighters) {
+                if (potential_leader->isAlive() && leader->distance(*potential_leader) < closest_distance) {
+                    closest_distance = leader->distance(*potential_leader);
+                    leader = potential_leader;
+                }
+            }
+        }
+
+// Select the enemy fighter closest to the leader as the victim.
+        closest_distance = std::numeric_limits<double>::max();
         for (Character *potential_victim: enemy->fighters) {
-            if (potential_victim->isAlive()) {
+            if (potential_victim->isAlive() && leader->distance(*potential_victim) < closest_distance) {
+                closest_distance = leader->distance(*potential_victim);
                 victim = potential_victim;
-                break;
             }
         }
         for (Character *fighter: fighters) {
@@ -119,14 +143,14 @@ namespace ariel {
             }
 
             if (fighter->getType() == "Cowboy") {
-                Cowboy* cowboy = dynamic_cast<Cowboy *>(fighter);
+                Cowboy *cowboy = dynamic_cast<Cowboy *>(fighter);
                 if (cowboy->hasBullets()) {
                     cowboy->shoot(closest_victim);
                 } else {
                     cowboy->reload();
                 }
             } else if (fighter->getType() == "Ninja") {
-                Ninja* ninja = dynamic_cast<Ninja *>(fighter);
+                Ninja *ninja = dynamic_cast<Ninja *>(fighter);
                 if (ninja->distance(*closest_victim) <= 1) {
                     ninja->slash(closest_victim);
                 } else {
@@ -138,6 +162,16 @@ namespace ariel {
 
     int Team::stillAlive() {
         int alive_count = 0;
+        // Check if the leader is alive. If not, appoint the closest teammate to the deceased leader as the new leader.
+        if (!leader->isAlive()) {
+            double closest_distance = std::numeric_limits<double>::max();
+            for (Character *potential_leader: fighters) {
+                if (potential_leader->isAlive() && leader->distance(*potential_leader) < closest_distance) {
+                    closest_distance = leader->distance(*potential_leader);
+                    leader = potential_leader;
+                }
+            }
+        }
         for (Character *fighter: fighters) {
             if (fighter != nullptr && fighter->isAlive()) {
                 alive_count++;
