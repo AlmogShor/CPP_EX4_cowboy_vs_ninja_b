@@ -6,6 +6,6 @@
 
 namespace ariel{
     TrainedNinja::TrainedNinja(const std::string &name, const Point &location)
-            : Ninja(name, location, 10, 100) {} // Assuming speed = 10 and hit points = 100
+            : Ninja(name, location, 12, 120) {} // Assuming speed = 10 and hit points = 100
 
 }

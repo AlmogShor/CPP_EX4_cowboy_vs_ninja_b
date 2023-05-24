@@ -6,5 +6,5 @@
 
 namespace ariel {
     YoungNinja::YoungNinja(const std::string &name, const Point &location)
-            : Ninja(name, location, 5, 50) {} // Assuming speed = 5 and hit points = 50
+            : Ninja(name, location, 14, 100) {} // Assuming speed = 5 and hit points = 50
 }

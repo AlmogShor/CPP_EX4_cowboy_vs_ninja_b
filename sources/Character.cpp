@@ -48,7 +48,7 @@ namespace ariel {
         return location;
     }
 
-    void Character::setLocation(Point new_location) {
+    void Character::setLocation(const Point &new_location) {
         this->location = new_location;
     }
 

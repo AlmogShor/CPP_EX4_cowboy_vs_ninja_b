@@ -7,6 +7,6 @@
 
 namespace ariel{
     OldNinja::OldNinja(const std::string &name, const Point &location)
-            : Ninja(name, location, 3, 100) {} // Assuming speed = 3 and hit points = 100
+            : Ninja(name, location, 8, 150) {} // Assuming speed = 3 and hit points = 100
 
 }

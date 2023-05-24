@@ -2,7 +2,11 @@
 
 namespace ariel {
     Team::Team(Character *leader) : leader(leader), highest_cowboy_position(0), lowest_ninja_position(10) {
+        if(leader->getHasTeam()){
+            throw std::runtime_error("Leader already in other team");
+        }
         fighters.push_back(leader);
+        leader->setInTeam(true);
         if (leader->getType() == "Cowboy") {
             highest_cowboy_position = 0;
         } else {
@@ -80,12 +84,15 @@ namespace ariel {
                 }
             }
             if (fighter->getType() == "Cowboy") {
+                printf("Cowboy shot");
                 dynamic_cast<Cowboy *>(fighter)->shoot(victim);
             } else if (fighter->getType() == "Ninja") {
                 if (fighter->distance(*victim) <= 1) {
                     dynamic_cast<Ninja *>(fighter)->slash(victim);
+                    printf("Ninja slashed");
                 } else {
                     dynamic_cast<Ninja *>(fighter)->move(victim);
+                    printf("Ninja moved");
                 }
             }
         }

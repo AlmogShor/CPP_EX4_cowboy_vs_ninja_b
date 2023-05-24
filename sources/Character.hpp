@@ -31,10 +31,10 @@ namespace ariel {
 
         Point getLocation() const;
 
-        bool setLocation(const Point &location);
+        void setLocation(const Point &location);
 
         //helpers
-        void setLocation(Point new_location);
+//        void setLocation(Point new_location);
         bool getInTeam() const{
             return hasTeam;
         }
