@@ -83,15 +83,15 @@ namespace ariel {
         }
     }
 
-        int Team2::stillAlive() {
-            int alive = 0;
-            for (Character *fighter: fighters) {
-                if (fighter->isAlive()) {
-                    alive++;
-                }
+    int Team2::stillAlive() {
+        int alive = 0;
+        for (Character *fighter: fighters) {
+            if (fighter->isAlive()) {
+                alive++;
             }
-            return alive;
         }
+        return alive;
+    }
 
     void Team2::print() {
         std::cout << "Team2:\n";
