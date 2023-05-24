@@ -36,6 +36,18 @@ namespace ariel {
             throw std::invalid_argument("Cannot attack a null character");
         }
 
+        if (!(enemy->isAlive())) {
+            throw std::runtime_error("Cannot attack a dead team");
+        }
+        if (!(this->isAlive())) {
+            return;
+            throw std::runtime_error("A dead team can't attack");
+        }
+        if (this == enemy) {
+            throw std::runtime_error("A team cannot attack itself");
+        }
+
+
         // Perform damage calculation and attack the enemy.
         int damage = 40; // Assuming damage is 40 constant
         enemy->hit(damage);
