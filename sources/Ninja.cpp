@@ -21,7 +21,7 @@ namespace ariel {
 
         // If the enemy is within 1 meter, attack.
         if (distance_to_enemy <= 1) {
-            this->slash(enemy);
+//            this->slash(enemy);
         } else {
             // Move towards the enemy if the enemy is more than 1 meter away.
             Point new_location = ninja_location.moveTowards(ninja_location, enemy_location, speed);
