@@ -46,7 +46,9 @@ namespace ariel {
             throw std::runtime_error("A team cannot attack itself");
         }
 
-
+        if(this->getLocation().distance(enemy->getLocation()) > 1) {
+            return;
+        }
         // Perform damage calculation and attack the enemy.
         int damage = 40; // Assuming damage is 40 constant
         enemy->hit(damage);
