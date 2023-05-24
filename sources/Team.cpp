@@ -11,7 +11,7 @@ namespace ariel {
     }
 
     Team::~Team() {
-        for (Character *fighter : fighters) {
+        for (Character *fighter: fighters) {
             delete fighter;
         }
     }
@@ -20,7 +20,7 @@ namespace ariel {
         if (fighters.size() >= MAX_TEAM_SIZE) {
             throw std::runtime_error("Team is full");
         }
-        for (Character *member : fighters) {
+        for (Character *member: fighters) {
             if (member == fighter) {
                 throw std::runtime_error("Character already in a team");
             }
@@ -46,21 +46,42 @@ namespace ariel {
         if (this == enemy) {
             throw std::runtime_error("A team cannot attack itself");
         }
-        Character *victim = enemy->fighters[0]; // You might need to find the closest fighter like in your friend's code
-        for (Character *fighter : fighters) {
-            if (!fighter->isAlive() || enemy->stillAlive() <= 0) {
+        Character *victim = nullptr;
+        for (Character *potential_victim: enemy->fighters) {
+            if (potential_victim->isAlive()) {
+                victim = potential_victim;
+                break;
+            }
+        }
+        for (Character *fighter: fighters) {
+            if (!fighter->isAlive()) {
+                continue;
+            }
+            if (enemy->stillAlive() <= 0) {
                 break;
             }
             if (!victim->isAlive()) {
-                victim = enemy->fighters[0]; // You might need to find the next alive fighter
+                if (!victim->isAlive()) {
+                    bool foundAlive = false;
+                    for (Character *potential_victim: enemy->fighters) {
+                        if (potential_victim->isAlive()) {
+                            victim = potential_victim;
+                            foundAlive = true;
+                            break;
+                        }
+                    }
+                    if (!foundAlive) {
+                        break; // Stop attacking if there are no more enemies alive
+                    }
+                }
             }
             if (fighter->getType() == "Cowboy") {
-                dynamic_cast<Cowboy*>(fighter)->shoot(victim);
+                dynamic_cast<Cowboy *>(fighter)->shoot(victim);
             } else if (fighter->getType() == "Ninja") {
                 if (fighter->distance(*victim) <= 1) {
-                    dynamic_cast<Ninja*>(fighter)->slash(victim);
+                    dynamic_cast<Ninja *>(fighter)->slash(victim);
                 } else {
-                    dynamic_cast<Ninja*>(fighter)->move(victim);
+                    dynamic_cast<Ninja *>(fighter)->move(victim);
                 }
             }
         }
@@ -68,7 +89,7 @@ namespace ariel {
 
     int Team::stillAlive() {
         int alive_count = 0;
-        for (Character *fighter : fighters) {
+        for (Character *fighter: fighters) {
             if (fighter != nullptr && fighter->isAlive()) {
                 alive_count++;
             }
@@ -78,7 +99,7 @@ namespace ariel {
 
     void Team::print() {
         std::cout << "Team:\n";
-        for (Character *fighter : fighters) {
+        for (Character *fighter: fighters) {
             fighter->print();
         }
     }
