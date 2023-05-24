@@ -304,12 +304,16 @@ TEST_SUITE("Battle related methods") {
 
         for (int i = 0; i < 1; i++) {
             old.slash(&cowboy);
+            printf("Cowboy is alive %d\n",cowboy.isAlive());
             young.slash(&cowboy);
+            printf("Cowboy is alive %d\n",cowboy.isAlive());
+
         }
 
         CHECK(cowboy.isAlive());
-
+        printf("Cowboy is alive %d\n",cowboy.isAlive());
         old.slash(&cowboy);
+        printf("Cowboy is alive %d\n",cowboy.isAlive());
         CHECK_FALSE(cowboy.isAlive());
 
         YoungNinja ninja{"Bob", Point{-0.5, 0.5}}; // Distance from young is exactly one

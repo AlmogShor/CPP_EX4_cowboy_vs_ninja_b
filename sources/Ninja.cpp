@@ -37,7 +37,7 @@ namespace ariel {
         }
 
         if (!(enemy->isAlive())) {
-            throw std::runtime_error("Cannot attack a dead team");
+            throw std::runtime_error("Cannot attack a dead enemy Charachter");
         }
         if (!(this->isAlive())) {
             throw std::runtime_error("A dead team can't attack");
