@@ -22,7 +22,7 @@
 #define MAX_TEAM_SIZE 10
 namespace ariel {
     class Team {
-    private:
+    protected:
         std::vector<Character *> fighters;
         Character *leader;
         int highest_cowboy_position;
@@ -44,7 +44,7 @@ namespace ariel {
 
         virtual void attack(Team *enemy);
 
-        int stillAlive();
+        virtual int stillAlive();
 
         virtual void print();
 

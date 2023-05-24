@@ -83,21 +83,7 @@ namespace ariel {
             if (closest_victim == nullptr) {
                 break; // Stop attacking if there are no more enemies alive
             }
-//            if (!victim->isAlive()) {
-//                if (!victim->isAlive()) {
-//                    bool foundAlive = false;
-//                    for (Character *potential_victim: enemy->fighters) {
-//                        if (potential_victim->isAlive()) {
-//                            victim = potential_victim;
-//                            foundAlive = true;
-//                            break;
-//                        }
-//                    }
-//                    if (!foundAlive) {
-//                        break; // Stop attacking if there are no more enemies alive
-//                    }
-//                }
-//            }
+
             if (fighter->getType() == "Cowboy") {
                 Cowboy* cowboy = dynamic_cast<Cowboy *>(fighter);
                 if (cowboy->hasBullets()) {

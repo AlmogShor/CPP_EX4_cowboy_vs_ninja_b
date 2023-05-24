@@ -33,8 +33,9 @@ namespace ariel {
         if (this == enemy) {
             throw std::runtime_error("A team cannot attack itself");
         }
+        std::vector<Character *> curr_enemy_fighters = enemy->getFighters();
         Character *victim = nullptr;
-        for (Character *potential_victim: enemy->getFighters()) {
+        for (Character *potential_victim: curr_enemy_fighters) {
             if (potential_victim->isAlive()) {
                 victim = potential_victim;
                 break;
@@ -50,7 +51,7 @@ namespace ariel {
 
             Character *closest_victim = nullptr;
             double closest_distance = std::numeric_limits<double>::max();
-            for (Character *potential_victim: enemy->getFighters()) {
+            for (Character *potential_victim: curr_enemy_fighters) {
                 if (potential_victim->isAlive()) {
                     double distance = fighter->distance(*potential_victim);
                     if (distance < closest_distance) {
@@ -63,30 +64,16 @@ namespace ariel {
             if (closest_victim == nullptr) {
                 break; // Stop attacking if there are no more enemies alive
             }
-//            if (!victim->isAlive()) {
-//                if (!victim->isAlive()) {
-//                    bool foundAlive = false;
-//                    for (Character *potential_victim: enemy->fighters) {
-//                        if (potential_victim->isAlive()) {
-//                            victim = potential_victim;
-//                            foundAlive = true;
-//                            break;
-//                        }
-//                    }
-//                    if (!foundAlive) {
-//                        break; // Stop attacking if there are no more enemies alive
-//                    }
-//                }
-//            }
+
             if (fighter->getType() == "Cowboy") {
-                Cowboy *cowboy = dynamic_cast<Cowboy *>(fighter);
+                Cowboy* cowboy = dynamic_cast<Cowboy *>(fighter);
                 if (cowboy->hasBullets()) {
                     cowboy->shoot(closest_victim);
                 } else {
                     cowboy->reload();
                 }
             } else if (fighter->getType() == "Ninja") {
-                Ninja *ninja = dynamic_cast<Ninja *>(fighter);
+                Ninja* ninja = dynamic_cast<Ninja *>(fighter);
                 if (ninja->distance(*closest_victim) <= 1) {
                     ninja->slash(closest_victim);
                 } else {
@@ -96,14 +83,15 @@ namespace ariel {
         }
     }
 
-//    int Team2::stillAlive() {
-//        for (Character *fighter : fighters) {
-//            if (fighter->isAlive()) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+        int Team2::stillAlive() {
+            int alive = 0;
+            for (Character *fighter: fighters) {
+                if (fighter->isAlive()) {
+                    alive++;
+                }
+            }
+            return alive;
+        }
 
     void Team2::print() {
         std::cout << "Team2:\n";

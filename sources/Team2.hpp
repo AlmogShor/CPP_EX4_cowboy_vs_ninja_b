@@ -10,7 +10,7 @@
 namespace ariel {
     class Team2 : public Team {
     private:
-        std::vector<Character *> fighters;
+//        std::vector<Character *> fighters;
         Character *leader;
 
 
@@ -22,6 +22,8 @@ namespace ariel {
         void add(Character *fighter) override;
 
         void attack(Team *enemy) override;
+
+        int stillAlive() override;
 
 
         void print() override;
